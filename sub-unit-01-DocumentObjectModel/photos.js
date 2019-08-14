@@ -2,8 +2,8 @@
 
  *    Photo gallery
  *    Variables and functions
- *    Author: 
- *    Date:   
+ *    Author: Khalel Abaquin
+ *    Date:   8.14.19
 
  *    Filename: photos.js
  */
@@ -12,6 +12,17 @@
 
 /* global variables */
 var photoOrder = [1,2,3,4,5];
+
+// populate the empty boxes with images
+function populateFigures() {
+   var filename;
+   var currentFig;
+   for (var i = 1; i < 4; i++) {
+      filename= "images/IMG_0" + photoOrder[i] + "sm.jpg";
+      currentFig = document.getElementsByTagName("img")[i-1];
+      currentFig.src = filename;
+   }
+}
 
 /* shift all images one figure to the left, and change values in photoOrder array to match  */
 function rightArrow() {
@@ -37,6 +48,19 @@ function leftArrow() {
    }
 }
 
+// create new elements name 'figure' & 'img'
+function previewFive() {
+   var lastFigure = document.createElement("figure");
+   lastFigure.id = "fig5";
+   lastFigure.style.zIndex = "5";
+   lastFigure.style.position = "absolute";
+   lastFigure.style.right = "45px";
+   lastFigure.style.top = "67px";
+   var lastImage = document.createElement("img");
+   lastImage.width = "240";
+   lastImage.height = "135";
+}
+
 /* open center figure in separate window */
 function zoomFig() {
    
@@ -46,6 +70,37 @@ function zoomFig() {
 function setUpPage() {
    createEventListeners();
    populateFigures();
+}
+
+// create event listeners to cycle through the images using the left & right arrows
+function createEventListeners() {
+   var leftArrow = document.getElementById("leftArrow");
+   if (leftarrow.addEventListener) {
+      leftarrow.addEventListener("click", leftArrow, false);
+   } else if (leftarrow.attachEvent) {
+      leftarrow.attachEvent("onclick", leftArrow);
+   }
+
+   var rightArrow = document.getElementById("rightArrow");
+   if (rightarrow.addEventListener) {
+      rightarrow.addEventListener("click", rightArrow, false);
+   } else if (rightarrow.attachEvent) {
+      rightarrow.attachEvent("onclick", rightArrow);
+   }
+   
+   var mainFig = document.getElementsByTagName("img")[1];
+   if (mainFig.addEventListener) {
+      mainFig.addEventListener("click", zoomFig, false);
+   } else if (mainFig.attachEvent) {
+      mainFig.attachEvent("onclick", zoomFig);
+   } 
+
+   var showAllButton = document.querySelector("#fiveButton p");
+   if (showAllButton.addEventListener) {
+      showAllButton.addEventListener("click", previewFive, false);
+   } else if (showAllButton.attachEvent) {
+      showAllButton.attachEvent("onclick", previewFive);   
+   }
 }
 
 /* run setUpPage() function when page finishes loading */

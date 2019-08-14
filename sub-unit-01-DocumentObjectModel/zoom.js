@@ -2,8 +2,8 @@
 
  *    Photo zoom
  *    Variables and functions
- *    Author: 
- *    Date:   
+ *    Author: Khalel Abaquin
+ *    Date:   8.14.19
 
  *    Filename: zoom.js
  */
