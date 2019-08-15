@@ -12,16 +12,25 @@
 
 /* global variables */
 var photoOrder = [1,2,3,4,5];
+var figureCount = 5;
 
 // populate the empty boxes with images
 function populateFigures() {
    var filename;
    var currentFig;
+   if (figureCount === 3) {
    for (var i = 1; i < 4; i++) {
-      filename= "images/IMG_0" + photoOrder[i] + "sm.jpg";
-      currentFig = document.getElementsByTagName("img")[i-1];
+      filename = "images/IMG_0" + photoOrder[i] + "sm.jpg";
+      currentFig = document.getElementsByTagName("img")[i - 1];
       currentFig.src = filename;
    }
+} else {
+   for (var i = 0; i < 5; i++) {
+      filename = "images/IMG_0" + photoOrder[i] + "sm.jpg";
+      currentFig = document.getElementsByTagName("img")[i];
+      currentFig.src = filename;
+   }
+} 
 }
 
 /* shift all images one figure to the left, and change values in photoOrder array to match  */
@@ -48,7 +57,7 @@ function leftArrow() {
    }
 }
 
-// create new elements name 'figure' & 'img'
+// create new elements name 'figure' & 'img' & stylizes them
 function previewFive() {
    var lastFigure = document.createElement("figure");
    lastFigure.id = "fig5";
@@ -59,6 +68,16 @@ function previewFive() {
    var lastImage = document.createElement("img");
    lastImage.width = "240";
    lastImage.height = "135";
+   var articleElem = document.getElementsByTagName("article")[0];
+   lastFigure.appendChild(lastImage);
+   articleElem.appendChild(lastFigure);
+   var firstFigure = lastFigure.cloneNode(true);
+   firstFigure.id = "fig1";
+   firstFigure.style.right = "";
+   firstFigure.style.left = "45px";
+   articleElem.appendChild(firstFigure);
+   document.getElementsByTagName("img")[3].src = "images/IMG_0" + photoOrder[4] + "sm.jpg";
+   document.getElementsByTagName("img")[4].src = "images/IMG_0" + photoOrder[0] + "sm.jpg";
 }
 
 /* open center figure in separate window */
